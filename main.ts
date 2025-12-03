@@ -1,8 +1,12 @@
-input.onButtonPressed(Button.A, function () {
-    radio.sendString("Hello World!")
-    basic.showString("Enviado")
+radio.onReceivedNumber(function (receivedNumber) {
+    if (receivedNumber >= dado1) {
+        basic.showIcon(IconNames.Sad)
+    }
 })
-radio.onReceivedString(function (receivedString) {
-    basic.showString(receivedString)
+input.onGesture(Gesture.Shake, function () {
+    dado1 = randint(1, 6)
+    basic.showNumber(dado1)
+    radio.sendNumber(dado1)
 })
+let dado1 = 0
 radio.setGroup(1)
